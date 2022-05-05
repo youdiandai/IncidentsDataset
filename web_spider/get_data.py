@@ -65,10 +65,10 @@ async def async_down(url, filepath, hashset: set):
 
 if __name__ == "__main__":
     IMAGE_DIR = '/Users/changxin/Desktop/image_data'
-    mkdir_if_not_exist(IMAGE_DIR)
     new_dir = sys.argv[1]
     if new_dir:
         IMAGE_DIR = new_dir
+    mkdir_if_not_exist(IMAGE_DIR)
     print(f"下载文件到{IMAGE_DIR}目录")
     DOWNLOADED = create_hashset(IMAGE_DIR)
 
