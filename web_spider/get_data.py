@@ -1,5 +1,4 @@
 import asyncio
-from distutils.log import ERROR
 import json
 import os
 import sys
@@ -28,8 +27,6 @@ ssl._create_default_https_context = ssl._create_unverified_context
 #         async with session.get(url) as resp:
 #             result = await resp.text()
 #             print(f"download image url:{url},{len(result)}")
-
-
 
 def mkdir_if_not_exist(path):
     if not os.path.exists(path):
