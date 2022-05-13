@@ -2,7 +2,7 @@ import asyncio
 import json
 import os
 import sys
-
+from PIL import Image
 import aiohttp
 import ssl
 
@@ -61,6 +61,19 @@ def count_images(path):
         return sum([count_images(os.path.join(path, x)) for x in os.listdir(path)])
 
 
+def count_images2(path):
+    # 递归计算目录下的文件数
+    if os.path.isfile(path):
+        try:
+            with Image.open(path) as i:
+                pass
+            return 1
+        except:
+            return 0
+    else:
+        return sum([count_images2(os.path.join(path, x)) for x in os.listdir(path)])
+
+
 if __name__ == "__main__":
     # 创建存储文件的文件夹
     IMAGE_DIR = '/Users/changxin/Desktop/image_data'
@@ -82,7 +95,7 @@ if __name__ == "__main__":
 
     # 生成一个 (url,文件相对路径)构成的列表
     dict_key_list = filter(lambda x: x not in DOWNLOADED and x not in ERRORDOWNED, dataset.keys())
-    urls_filepath = [(dataset[x]['url'], x) for x in dataset.keys()]
+    urls_filepath = [(dataset[x]['url'], x) for x in dict_key_list]
 
     # 协程下载所有图像
     loop = asyncio.get_event_loop()
