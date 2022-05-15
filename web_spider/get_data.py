@@ -23,7 +23,7 @@ def create_hashset(file_path, filename):
             hashset = set()
             images = f.readlines()
             for image in images:
-                hashset.add(image)
+                hashset.add(image.strip())
             return hashset
     else:
         with open(file_name, 'w') as f:
